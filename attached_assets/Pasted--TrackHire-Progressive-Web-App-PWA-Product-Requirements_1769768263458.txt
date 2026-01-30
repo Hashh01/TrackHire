@@ -1,0 +1,272 @@
+# TrackHire - Progressive Web App (PWA) Product Requirements Document
+
+## 1\. Overview
+
+**App Name:** TrackHire
+
+TrackHire is a comprehensive job application tracking Progressive Web App designed specifically for students and job seekers who need to manage their job search process efficiently. The application provides a centralized platform to monitor application status, track interview progress, and maintain detailed records of all job applications. With secure authentication and intuitive dashboard features, users can streamline their job search workflow while maintaining professional organization.
+
+The primary target audience includes college students, recent graduates, and active job seekers who are applying to multiple positions simultaneously. TrackHire solves the critical problem of losing track of job applications, missing follow-up opportunities, and lacking visibility into job search progress and statistics.
+
+## 2\. Essential Core Features
+
+* **Secure User Authentication**: Registration and login with email verification
+* **Application Management**: Add, edit, and delete job applications with comprehensive details
+* **Status Tracking**: Monitor application progress through customizable status stages
+* **Advanced Search & Filtering**: Find applications by company, role, status, date, and keywords
+* **Dashboard Analytics**: Visual statistics showing application metrics and success rates
+* **Notes & Documentation**: Detailed note-taking for each application and interview
+* **Date Management**: Track application dates, interview schedules, and follow-up reminders
+* **Data Export**: Export application data for external use
+* **Responsive Design**: Optimized PWA experience across all devices
+* **Offline Capability**: Basic functionality available without internet connection
+* **Data Backup & Sync**: Automatic cloud synchronization of all application data
+
+## 3\. Tech Stack
+
+**Front-End:**
+
+* React 18+ with TypeScript
+* Tailwind CSS for styling
+* Vite for build tooling and development
+* PWA configuration for mobile app-like experience
+
+**Back-End:**
+
+* Supabase for authentication, database, and real-time capabilities
+* PostgreSQL database through Supabase
+* Row Level Security (RLS) for data protection
+
+**APIs & Integrations:**
+
+* Supabase Auth for user management
+* Supabase Realtime for live updates
+* Browser Push API for notifications
+* Service Worker for offline functionality
+* Local Storage API for offline data caching
+
+**Technical Requirements:**
+
+* PWA manifest for app installation
+* Service worker for offline capabilities
+* Responsive design for mobile-first experience
+* Touch-friendly interface elements
+* Fast loading times optimized for mobile networks
+
+## 4\. Design Preferences
+
+**Interface:** Clean, professional, and minimalist design with a focus on productivity and data visualization. The interface should feel native to mobile devices while maintaining professional aesthetics suitable for career-focused users.
+
+**Color Palette:**
+
+* Primary: #2563EB (Professional Blue)
+* Secondary: #64748B (Slate Gray)
+* Accent: #10B981 (Success Green)
+* Background: #F8FAFC (Light Gray)
+* Error: #EF4444 (Red)
+
+**Typography:**
+
+* Headings: Inter (clean, modern sans-serif)
+* Body Text: System fonts with Inter fallback
+* Monospace: JetBrains Mono for data tables
+
+## 5\. All Screens/Pages
+
+### Authentication Screens
+
+**Login Screen (`/login`)**
+
+* Email input field with validation
+* Password input field with show/hide toggle
+* "Remember Me" checkbox
+* Login button with loading state
+* "Forgot Password?" link
+* "Sign Up" navigation link
+* Social login options (Google)
+* Form validation messages
+
+**Registration Screen (`/register`)**
+
+* Full name input field
+* Email input field with validation
+* Password input field with strength indicator
+* Confirm password field
+* Terms of service checkbox
+* Sign up button with loading state
+* "Already have an account?" login link
+* Email verification notice
+
+**Forgot Password Screen (`/forgot-password`)**
+
+* Email input field
+* Send reset email button
+* Back to login link
+* Success/error message display
+* Instructions text
+
+### Main Application Screens
+
+**Dashboard Screen (`/dashboard`)**
+
+* Header with app logo and user menu
+* Quick stats cards (Total Applications, Interviews, Offers, Rejections)
+* Recent applications list (last 5-10 entries)
+* Quick add application floating action button
+* Status distribution chart/progress indicators
+* Navigation menu (bottom nav for PWA)
+* Search bar shortcut
+* Filter quick access buttons
+
+**Applications List Screen (`/applications`)**
+
+* Search bar with real-time filtering
+* Status filter chips (All, Applied, Interview, Offer, Rejected)
+* Date range filter
+* Sort options dropdown (Date, Company, Status)
+* Application cards with key information
+* Swipe actions for edit/delete (mobile)
+* Add new application floating action button
+* Pull-to-refresh functionality
+* Infinite scroll or pagination
+
+**Add Application Screen (`/applications/new`)**
+
+* Company name input field
+* Job title/role input field
+* Location input field
+* Job type dropdown (Full-time, Part-time, Contract, Internship)
+* Application date picker
+* Status dropdown
+* Job description/URL field
+* Salary range input (optional)
+* Application deadline date picker
+* Notes textarea
+* Save and cancel buttons
+* Form validation indicators
+
+**Edit Application Screen (`/applications/:id/edit`)**
+
+* Pre-populated form with existing data
+* All fields from add application screen
+* Update and cancel buttons
+* Delete application option
+* Last modified timestamp
+* Form dirty state indication
+
+**Application Details Screen (`/applications/:id`)**
+
+* Full application information display
+* Status update quick actions
+* Timeline of status changes
+* Notes section with add/edit capability
+* Interview details if applicable
+* Action buttons (Edit, Delete, Duplicate)
+* Back navigation
+* Share application details option
+
+**Profile Screen (`/profile`)**
+
+* User avatar and name
+* Email address display
+* Account settings section
+* Password change option
+* Data export functionality
+* Logout button
+* App version information
+* Help and support links
+
+**Settings Screen (`/settings`)**
+
+* Notification preferences
+* Theme selection (light/dark)
+* Data backup settings
+* Privacy settings
+* App installation prompt
+* Clear cache option
+* About section
+
+### Utility Screens
+
+**404 Error Screen (`/404`)**
+
+* Error illustration
+* "Page not found" message
+* Back to dashboard button
+* Search functionality
+
+**Offline Screen (`/offline`)**
+
+* Offline indicator
+* Cached data access
+* Retry connection button
+* Offline capabilities explanation
+
+## 6\. App Menu and Navigation Structure
+
+**Navigation System:** Bottom tab navigation for PWA with hamburger menu for secondary options
+
+**Primary Navigation (Bottom Tabs):**
+
+* Dashboard (Home icon)
+* Applications (List icon)
+* Add Application (Plus icon)
+* Profile (User icon)
+
+**Secondary Navigation (Hamburger Menu):**
+
+* Settings
+* Help & Support
+* Data Export
+* About
+
+**Navigation Hierarchy:**
+
+```
+├── Dashboard (/dashboard)
+├── Applications (/applications)
+│   ├── Application Details (/applications/:id)
+│   ├── Edit Application (/applications/:id/edit)
+│   └── Add Application (/applications/new)
+├── Profile (/profile)
+│   └── Settings (/settings)
+└── Authentication
+    ├── Login (/login)
+    ├── Register (/register)
+    └── Forgot Password (/forgot-password)
+```
+
+## 7\. User Flow
+
+**Initial User Journey:**
+
+1. **First Visit**: User accesses TrackHire PWA URL in mobile browser
+2. **Installation Prompt**: Browser prompts to install app to home screen
+3. **Registration**: User taps "Get Started" and completes registration form
+4. **Email Verification**: User receives and clicks verification email
+5. **Onboarding**: Brief tutorial highlighting key features
+6. **Dashboard Access**: User lands on dashboard showing empty state with call-to-action
+
+**Primary Application Management Flow:**
+
+7. **Add First Application**: User taps floating "+" button or "Add Application" CTA
+8. **Form Completion**: User fills out application details form with validation feedback
+9. **Save Application**: Data is saved to Supabase with real-time confirmation
+10. **Dashboard Update**: User returns to dashboard showing updated statistics
+11. **Application Tracking**: User can view, search, and filter applications in the Applications tab
+12. **Status Updates**: User opens application details and updates status as interview process progresses
+13. **Analytics Review**: User reviews dashboard statistics to track job search progress
+
+**Ongoing Usage Patterns:**
+
+14. **Daily Check-ins**: User opens app to review pending applications and update statuses
+15. **Interview Preparation**: User accesses application details to review notes and company information
+16. **Follow-up Management**: User updates application status and adds follow-up notes
+17. **Progress Monitoring**: User reviews dashboard analytics to assess job search effectiveness
+18. **Data Management**: User exports data for external tracking or backup purposes
+
+**Offline Experience:**
+
+19. **Offline Access**: User can view cached applications when internet is unavailable
+20. **Offline Editing**: Basic edits are stored locally and synced when connection resumes
+21. **Sync Resolution**: Automatic data synchronization upon reconnection- plan genratrtor have-It looks like you have exceeded your subscription's monthly Word Limit. Upgrade now to continue using GravityWrite's services.-how now i create
